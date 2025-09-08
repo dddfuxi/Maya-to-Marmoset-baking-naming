@@ -15,6 +15,13 @@
 - **快速后缀添加**: 一键为选中物体添加`_low`或`_high`后缀
 - **自定义后缀**: 支持添加任意自定义后缀，如`_cage`、`_bake`等
 - **预设后缀**: 内置常用后缀按钮（`_cage`、`_bake`、`_LP`、`_HP`）
+- **自动分材质功能** ⭐ **NEW!**:
+  - 自动检索场景中带有特定后缀的模型
+  - `_low`模型: 自动分配绿色Lambert材质
+  - `_high`模型: 自动分配红色Lambert材质  
+  - `_cage`模型: 自动分配蓝色Lambert材质
+  - 支持透明度设置 (0-100%)
+  - 一键完成所有材质分配
 
 ### 🛠️ 高级功能
 - **批量重命名**: 支持对场景中所有物体进行批量重命名
@@ -84,6 +91,16 @@ show_maya_baking_renamer_gui()
 1. 在「自定义后缀」输入框中输入后缀名称
 2. 点击「应用自定义后缀」或按回车键
 
+#### 4. 自动分材质功能 ⭐ **NEW!**
+1. 完成模型重命名后（确保模型有`_low`、`_high`、`_cage`等后缀）
+2. 调整透明度滑块设置材质透明度 (0-100%，可选)
+3. 点击「自动分配材质」按钮
+4. 工具会自动为场景中的模型分配对应颜色的材质：
+   - `_low`模型: 绿色Lambert材质
+   - `_high`模型: 红色Lambert材质
+   - `_cage`模型: 蓝色Lambert材质
+5. 在Maya视口中查看材质效果
+
 ### 高级功能
 
 #### 批量操作
@@ -123,6 +140,11 @@ renamer.rename_with_custom_suffix("cage")
 # 自动重命名模式
 renamer.auto_rename_by_selection_order()
 
+# 自动分材质功能 ⭐ NEW!
+renamer.auto_assign_materials()           # 自动分配材质 (无透明度)
+renamer.auto_assign_materials(0.3)        # 自动分配材质 (30%透明度)
+renamer.auto_assign_materials(0.5)        # 自动分配材质 (50%透明度)
+
 # 撤销上一次操作
 renamer.undo_last_rename()
 ```
@@ -142,7 +164,16 @@ renamer.undo_last_rename()
             Character_Body_high, Character_Head_high (高模)
    ```
 
-3. **导出到Marmoset**：
+3. **自动分配材质** ⭐ **NEW!**：
+   ```python
+   # 自动为所有模型分配颜色材质，便于区分
+   auto_assign_materials(0.2)  # 20%透明度，便于查看内部结构
+   ```
+   - `_low`模型显示为绿色
+   - `_high`模型显示为红色
+   - `_cage`模型显示为蓝色
+
+4. **导出到Marmoset**：
    - 导出重命名后的模型
    - 在Marmoset中会自动识别匹配的高低模对
 
