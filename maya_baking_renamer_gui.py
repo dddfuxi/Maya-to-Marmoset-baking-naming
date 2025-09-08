@@ -198,7 +198,7 @@ class MayaBakingRenamerGUI(QDialog):
         创建界面控件
         """
         # 标题标签
-        self.title_label = QLabel("Maya烘焙命名工具")
+        self.title_label = QLabel("伏羲Maya烘焙命名工具")
         self.title_label.setAlignment(Qt.AlignCenter)
         font = self.title_label.font()
         font.setPointSize(14)
