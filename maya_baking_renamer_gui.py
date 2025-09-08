@@ -49,7 +49,12 @@ class MaterialConfigDialog(QDialog):
         super(MaterialConfigDialog, self).__init__(parent)
         self.setWindowTitle("材质配置")
         self.setModal(True)
-        self.resize(300, 200)
+        self.resize(350, 250)
+        
+        # 设置字体
+        font = QFont()
+        font.setPointSize(10)
+        self.setFont(font)
         
         # 创建界面元素
         layout = QVBoxLayout()
@@ -109,6 +114,12 @@ class MaterialConfigDialog(QDialog):
         button_layout = QHBoxLayout()
         self.ok_btn = QPushButton("确定")
         self.cancel_btn = QPushButton("取消")
+        
+        # 设置按钮样式
+        button_style = "QPushButton { padding: 8px 16px; font-size: 12px; min-height: 28px; }"
+        self.ok_btn.setStyleSheet(button_style + "QPushButton { background-color: #4CAF50; color: white; }")
+        self.cancel_btn.setStyleSheet(button_style + "QPushButton { background-color: #f44336; color: white; }")
+        
         button_layout.addWidget(self.ok_btn)
         button_layout.addWidget(self.cancel_btn)
         layout.addLayout(button_layout)
@@ -161,10 +172,15 @@ class MayaBakingRenamerGUI(QDialog):
         self.renamer = MayaBakingRenamer()
         
         # 设置窗口属性
-        self.setWindowTitle("Maya烘焙命名工具 v1.0")
+        self.setWindowTitle("Maya烘焙命名工具 v2.0")
         self.setWindowFlags(Qt.Window)
-        self.setMinimumSize(400, 500)
-        self.resize(450, 600)
+        self.setMinimumSize(500, 700)
+        self.resize(550, 800)
+        
+        # 设置全局字体
+        font = QFont()
+        font.setPointSize(10)  # 增大字体大小
+        self.setFont(font)
         
         # 创建界面
         self.create_widgets()
@@ -192,7 +208,8 @@ class MayaBakingRenamerGUI(QDialog):
         # 选择信息组
         self.selection_group = QGroupBox("当前选择")
         self.selection_list = QListWidget()
-        self.selection_list.setMaximumHeight(100)
+        self.selection_list.setMaximumHeight(120)
+        self.selection_list.setFont(QFont("Arial", 9))
         self.refresh_selection_btn = QPushButton("刷新选择")
         
         # 快速操作组
@@ -202,7 +219,7 @@ class MayaBakingRenamerGUI(QDialog):
         self.high_suffix_btn = QPushButton("添加 _high 后缀")
         
         # 统一按钮样式
-        compact_button_style = "QPushButton { padding: 6px 12px; font-size: 11px; }"
+        compact_button_style = "QPushButton { padding: 8px 16px; font-size: 12px; min-height: 28px; }"
         self.auto_rename_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #4CAF50; color: white; font-weight: bold; }")
         self.low_suffix_btn.setStyleSheet(compact_button_style)
         self.high_suffix_btn.setStyleSheet(compact_button_style)
@@ -220,7 +237,7 @@ class MayaBakingRenamerGUI(QDialog):
         self.preset_hp_btn = QPushButton("_HP")
         
         # 应用统一样式到自定义后缀按钮
-        small_button_style = "QPushButton { padding: 4px 8px; font-size: 10px; min-width: 50px; }"
+        small_button_style = "QPushButton { padding: 6px 12px; font-size: 11px; min-width: 60px; min-height: 24px; }"
         self.custom_suffix_btn.setStyleSheet(compact_button_style)
         self.preset_cage_btn.setStyleSheet(small_button_style)
         self.preset_bake_btn.setStyleSheet(small_button_style)
@@ -234,9 +251,10 @@ class MayaBakingRenamerGUI(QDialog):
         self.clean_suffix_btn = QPushButton("清理所有后缀")
         
         # 应用统一样式到批量操作按钮
-        self.batch_low_btn.setStyleSheet(compact_button_style)
-        self.batch_high_btn.setStyleSheet(compact_button_style)
-        self.clean_suffix_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #FF5722; color: white; }")
+        batch_button_style = "QPushButton { padding: 8px 16px; font-size: 12px; min-height: 28px; }"
+        self.batch_low_btn.setStyleSheet(batch_button_style)
+        self.batch_high_btn.setStyleSheet(batch_button_style)
+        self.clean_suffix_btn.setStyleSheet(batch_button_style + "QPushButton { background-color: #FF5722; color: white; }")
         
         # 材质操作组
         self.material_group = QGroupBox("材质配置")
@@ -252,7 +270,8 @@ class MayaBakingRenamerGUI(QDialog):
         
         # 材质配置列表
         self.material_config_list = QListWidget()
-        self.material_config_list.setMaximumHeight(120)
+        self.material_config_list.setMaximumHeight(140)
+        self.material_config_list.setFont(QFont("Arial", 9))
         
         # 材质配置按钮
         self.add_config_btn = QPushButton("添加配置")
@@ -260,8 +279,8 @@ class MayaBakingRenamerGUI(QDialog):
         self.remove_config_btn = QPushButton("删除配置")
         self.auto_material_btn = QPushButton("自动分配材质")
         
-        # 设置按钮样式 - 更小的尺寸
-        button_style = "QPushButton { padding: 4px 8px; font-size: 11px; }"
+        # 设置按钮样式 - 适中的尺寸和更大字体
+        button_style = "QPushButton { padding: 6px 12px; font-size: 12px; min-height: 26px; }"
         self.add_config_btn.setStyleSheet(button_style + "QPushButton { background-color: #4CAF50; color: white; }")
         self.edit_config_btn.setStyleSheet(button_style + "QPushButton { background-color: #2196F3; color: white; }")
         self.remove_config_btn.setStyleSheet(button_style + "QPushButton { background-color: #f44336; color: white; }")
@@ -272,11 +291,13 @@ class MayaBakingRenamerGUI(QDialog):
         self.undo_btn = QPushButton("撤销上一次重命名")
         self.clear_history_btn = QPushButton("清空历史记录")
         self.history_list = QListWidget()
-        self.history_list.setMaximumHeight(80)
+        self.history_list.setMaximumHeight(100)
+        self.history_list.setFont(QFont("Arial", 9))
         
         # 应用统一样式到历史操作按钮
-        self.undo_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #9C27B0; color: white; }")
-        self.clear_history_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #607D8B; color: white; }")
+        history_button_style = "QPushButton { padding: 8px 16px; font-size: 12px; min-height: 28px; }"
+        self.undo_btn.setStyleSheet(history_button_style + "QPushButton { background-color: #9C27B0; color: white; }")
+        self.clear_history_btn.setStyleSheet(history_button_style + "QPushButton { background-color: #607D8B; color: white; }")
         
         # 设置组
         self.settings_group = QGroupBox("设置")
@@ -296,8 +317,9 @@ class MayaBakingRenamerGUI(QDialog):
         self.close_btn = QPushButton("关闭")
         
         # 应用统一样式到底部按钮
-        self.about_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #607D8B; color: white; }")
-        self.close_btn.setStyleSheet(compact_button_style + "QPushButton { background-color: #f44336; color: white; }")
+        bottom_button_style = "QPushButton { padding: 8px 16px; font-size: 12px; min-height: 28px; }"
+        self.about_btn.setStyleSheet(bottom_button_style + "QPushButton { background-color: #607D8B; color: white; }")
+        self.close_btn.setStyleSheet(bottom_button_style + "QPushButton { background-color: #f44336; color: white; }")
     
     def create_layouts(self):
         """
@@ -716,7 +738,9 @@ class MayaBakingRenamerGUI(QDialog):
         if dialog.exec_() == QDialog.Accepted:
             suffix, color, transparency, enabled = dialog.get_config()
             try:
-                self.renamer.add_material_config(suffix, color, transparency, enabled)
+                # 将透明度从0-100范围转换为0-1范围
+                transparency_normalized = transparency / 100.0
+                self.renamer.add_material_config(suffix, color, transparency_normalized, enabled)
                 self.refresh_material_config_list()
                 self.update_status(f"已添加材质配置: {suffix}")
             except Exception as e:
@@ -739,19 +763,23 @@ class MayaBakingRenamerGUI(QDialog):
             configs = self.renamer.get_material_configs()
             if suffix in configs:
                 config = configs[suffix]
+                # 将透明度从0-1范围转换为0-100范围用于显示
+                transparency_display = int(config.get('transparency', 0) * 100)
                 dialog = MaterialConfigDialog(self, suffix, config['color'], 
-                                            config.get('transparency', 0), 
+                                            transparency_display, 
                                             config.get('enabled', True))
                 if dialog.exec_() == QDialog.Accepted:
                     new_suffix, color, transparency, enabled = dialog.get_config()
+                    # 将透明度从0-100范围转换为0-1范围
+                    transparency_normalized = transparency / 100.0
                     if new_suffix != suffix:
                         # 如果后缀名改变了，需要删除旧的并添加新的
                         self.renamer.remove_material_config(suffix)
-                        self.renamer.add_material_config(new_suffix, color, transparency, enabled)
+                        self.renamer.add_material_config(new_suffix, color, transparency_normalized, enabled)
                     else:
                         # 更新现有配置
                         self.renamer.update_material_color(suffix, color)
-                        self.renamer.update_material_transparency(suffix, transparency)
+                        self.renamer.update_material_transparency(suffix, transparency_normalized)
                         configs[suffix]['enabled'] = enabled
                     self.refresh_material_config_list()
                     self.update_status(f"已更新材质配置: {new_suffix}")
