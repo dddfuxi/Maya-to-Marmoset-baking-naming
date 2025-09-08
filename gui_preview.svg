@@ -1,0 +1,122 @@
+<svg width="425" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 窗口背景 -->
+  <rect width="425" height="600" fill="#3c3c3c" stroke="#666" stroke-width="1"/>
+  
+  <!-- 标题栏 -->
+  <rect width="425" height="30" fill="#2d2d2d"/>
+  <text x="15" y="20" fill="white" font-family="Arial" font-size="12">Maya烘焙命名工具 v1.0</text>
+  <rect x="395" y="8" width="12" height="12" fill="#ff5f56" rx="6"/>
+  <rect x="375" y="8" width="12" height="12" fill="#ffbd2e" rx="6"/>
+  <rect x="355" y="8" width="12" height="12" fill="#27ca3f" rx="6"/>
+  
+  <!-- 主标题 -->
+  <text x="212" y="60" fill="white" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Maya烘焙命名工具</text>
+  
+  <!-- 当前选择组 -->
+  <rect x="25" y="80" width="375" height="120" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="100" fill="white" font-family="Arial" font-size="12" font-weight="bold">当前选择</text>
+  
+  <!-- 选择列表 -->
+  <rect x="35" y="110" width="355" height="60" fill="#2d2d2d" stroke="#555" stroke-width="1"/>
+  <text x="40" y="130" fill="#ccc" font-family="Arial" font-size="11">pCube1_low</text>
+  <text x="40" y="150" fill="#ccc" font-family="Arial" font-size="11">pCylinder1_low</text>
+  
+  <!-- 刷新选择按钮 -->
+  <rect x="35" y="175" width="355" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="212" y="188" fill="white" font-family="Arial" font-size="11" text-anchor="middle">刷新选择</text>
+  
+  <!-- 快速操作组 -->
+  <rect x="25" y="210" width="375" height="100" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="230" fill="white" font-family="Arial" font-size="12" font-weight="bold">快速操作</text>
+  
+  <!-- 自动重命名模式按钮 -->
+  <rect x="35" y="240" width="355" height="25" fill="#4CAF50" stroke="#45a049" stroke-width="1" rx="3"/>
+  <text x="212" y="257" fill="white" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">自动重命名模式</text>
+  
+  <!-- _low 和 _high 按钮 -->
+  <rect x="35" y="275" width="170" height="25" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="120" y="292" fill="white" font-family="Arial" font-size="11" text-anchor="middle">添加_low后缀</text>
+  
+  <rect x="220" y="275" width="170" height="25" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="305" y="292" fill="white" font-family="Arial" font-size="11" text-anchor="middle">添加_high后缀</text>
+  
+  <!-- 自定义后缀组 -->
+  <rect x="25" y="320" width="375" height="90" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="340" fill="white" font-family="Arial" font-size="12" font-weight="bold">自定义后缀</text>
+  
+  <!-- 输入框和按钮 -->
+  <rect x="35" y="350" width="250" height="20" fill="#2d2d2d" stroke="#555" stroke-width="1"/>
+  <text x="40" y="363" fill="#888" font-family="Arial" font-size="10">输入自定义后缀 (如: cage, ...</text>
+  
+  <rect x="295" y="350" width="95" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="342" y="363" fill="white" font-family="Arial" font-size="10" text-anchor="middle">应用自定义后缀</text>
+  
+  <!-- 预设按钮 -->
+  <rect x="35" y="380" width="80" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="75" y="393" fill="white" font-family="Arial" font-size="10" text-anchor="middle">_cage</text>
+  
+  <rect x="125" y="380" width="80" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="165" y="393" fill="white" font-family="Arial" font-size="10" text-anchor="middle">_bake</text>
+  
+  <rect x="215" y="380" width="80" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="255" y="393" fill="white" font-family="Arial" font-size="10" text-anchor="middle">_LP</text>
+  
+  <rect x="305" y="380" width="80" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="345" y="393" fill="white" font-family="Arial" font-size="10" text-anchor="middle">_HP</text>
+  
+  <!-- 批量操作组 -->
+  <rect x="25" y="420" width="375" height="50" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="440" fill="white" font-family="Arial" font-size="12" font-weight="bold">批量操作</text>
+  
+  <rect x="35" y="450" width="110" height="15" fill="#555" stroke="#777" stroke-width="1" rx="2"/>
+  <text x="90" y="460" fill="white" font-family="Arial" font-size="9" text-anchor="middle">批量添加_low</text>
+  
+  <rect x="155" y="450" width="110" height="15" fill="#555" stroke="#777" stroke-width="1" rx="2"/>
+  <text x="210" y="460" fill="white" font-family="Arial" font-size="9" text-anchor="middle">批量添加_high</text>
+  
+  <rect x="275" y="450" width="110" height="15" fill="#555" stroke="#777" stroke-width="1" rx="2"/>
+  <text x="330" y="460" fill="white" font-family="Arial" font-size="9" text-anchor="middle">清理所有后缀</text>
+  
+  <!-- 历史操作组 -->
+  <rect x="25" y="480" width="375" height="100" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="500" fill="white" font-family="Arial" font-size="12" font-weight="bold">历史操作</text>
+  
+  <!-- 撤销和清空按钮 -->
+  <rect x="35" y="510" width="170" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="120" y="523" fill="white" font-family="Arial" font-size="10" text-anchor="middle">撤销上一次重命名</text>
+  
+  <rect x="220" y="510" width="170" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="305" y="523" fill="white" font-family="Arial" font-size="10" text-anchor="middle">清空历史记录</text>
+  
+  <!-- 历史记录列表 -->
+  <rect x="35" y="540" width="355" height="30" fill="#2d2d2d" stroke="#555" stroke-width="1"/>
+  <text x="40" y="553" fill="#ccc" font-family="Arial" font-size="9">操作 7: 2 个物体</text>
+  <text x="40" y="563" fill="#ccc" font-family="Arial" font-size="9">操作 6: 2 个物体</text>
+  
+  <!-- 设置组 -->
+  <rect x="25" y="590" width="375" height="80" fill="#4a4a4a" stroke="#666" stroke-width="1" rx="5"/>
+  <text x="35" y="610" fill="white" font-family="Arial" font-size="12" font-weight="bold">设置</text>
+  
+  <!-- 复选框 -->
+  <rect x="35" y="620" width="10" height="10" fill="#4CAF50" stroke="#45a049" stroke-width="1"/>
+  <text x="32" y="628" fill="white" font-family="Arial" font-size="8">✓</text>
+  <text x="50" y="628" fill="white" font-family="Arial" font-size="10">检查命名冲突</text>
+  
+  <rect x="35" y="635" width="10" height="10" fill="#4CAF50" stroke="#45a049" stroke-width="1"/>
+  <text x="32" y="643" fill="white" font-family="Arial" font-size="8">✓</text>
+  <text x="50" y="643" fill="white" font-family="Arial" font-size="10">自动生成唯一名称</text>
+  
+  <rect x="35" y="650" width="10" height="10" fill="#4CAF50" stroke="#45a049" stroke-width="1"/>
+  <text x="32" y="658" fill="white" font-family="Arial" font-size="8">✓</text>
+  <text x="50" y="658" fill="white" font-family="Arial" font-size="10">显示操作消息</text>
+  
+  <!-- 状态栏 -->
+  <text x="35" y="685" fill="#888" font-family="Arial" font-size="10" font-style="italic">已添加_low后缀，请选择下一组物体</text>
+  
+  <!-- 底部按钮 -->
+  <rect x="35" y="700" width="60" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="65" y="713" fill="white" font-family="Arial" font-size="10" text-anchor="middle">关于</text>
+  
+  <rect x="330" y="700" width="60" height="20" fill="#555" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="360" y="713" fill="white" font-family="Arial" font-size="10" text-anchor="middle">关闭</text>
+</svg>
