@@ -118,6 +118,24 @@ class MayaBakingRenamerGUI(QDialog):
         self.batch_high_btn = QPushButton("批量添加 _high")
         self.clean_suffix_btn = QPushButton("清理所有后缀")
         
+        # 材质操作组
+        self.material_group = QGroupBox("自动分材质")
+        self.auto_material_btn = QPushButton("自动分配材质")
+        self.auto_material_btn.setStyleSheet("QPushButton { background-color: #FF9800; color: white; font-weight: bold; padding: 8px; }")
+        
+        # 透明度设置
+        self.transparency_label = QLabel("透明度:")
+        self.transparency_slider = QSlider(Qt.Horizontal)
+        self.transparency_slider.setRange(0, 100)
+        self.transparency_slider.setValue(0)
+        self.transparency_value_label = QLabel("0%")
+        self.transparency_value_label.setMinimumWidth(30)
+        
+        # 材质预览标签
+        self.material_info_label = QLabel("_low:绿色 | _high:红色 | _cage:蓝色")
+        self.material_info_label.setStyleSheet("QLabel { color: #666; font-size: 10px; }")
+        self.material_info_label.setAlignment(Qt.AlignCenter)
+        
         # 历史操作组
         self.history_group = QGroupBox("历史操作")
         self.undo_btn = QPushButton("撤销上一次重命名")
@@ -197,6 +215,21 @@ class MayaBakingRenamerGUI(QDialog):
         self.batch_group.setLayout(batch_layout)
         main_layout.addWidget(self.batch_group)
         
+        # 材质操作组布局
+        material_layout = QVBoxLayout()
+        material_layout.addWidget(self.auto_material_btn)
+        
+        # 透明度设置布局
+        transparency_layout = QHBoxLayout()
+        transparency_layout.addWidget(self.transparency_label)
+        transparency_layout.addWidget(self.transparency_slider)
+        transparency_layout.addWidget(self.transparency_value_label)
+        material_layout.addLayout(transparency_layout)
+        
+        material_layout.addWidget(self.material_info_label)
+        self.material_group.setLayout(material_layout)
+        main_layout.addWidget(self.material_group)
+        
         # 历史操作组布局
         history_layout = QVBoxLayout()
         history_buttons_layout = QHBoxLayout()
@@ -251,6 +284,10 @@ class MayaBakingRenamerGUI(QDialog):
         self.batch_low_btn.clicked.connect(self.batch_add_low)
         self.batch_high_btn.clicked.connect(self.batch_add_high)
         self.clean_suffix_btn.clicked.connect(self.clean_all_suffixes)
+        
+        # 材质操作
+        self.auto_material_btn.clicked.connect(self.auto_assign_materials)
+        self.transparency_slider.valueChanged.connect(self.update_transparency_label)
         
         # 历史操作
         self.undo_btn.clicked.connect(self.undo_rename)
@@ -457,6 +494,51 @@ class MayaBakingRenamerGUI(QDialog):
         self.update_history_list()
         self.update_status("历史记录已清空")
     
+    def update_transparency_label(self, value):
+        """
+        更新透明度标签显示
+        
+        Args:
+            value (int): 透明度值 (0-100)
+        """
+        self.transparency_value_label.setText(f"{value}%")
+    
+    def auto_assign_materials(self):
+        """
+        自动分配材质
+        """
+        try:
+            # 获取透明度值 (转换为0-1范围)
+            transparency = self.transparency_slider.value() / 100.0
+            
+            # 执行自动分材质
+            result = self.renamer.auto_assign_materials(transparency)
+            
+            # 统计结果
+            total_objects = sum(len(result[key]['objects']) for key in result)
+            
+            if total_objects > 0:
+                # 构建详细信息
+                details = []
+                for key in ['low', 'high', 'cage']:
+                    count = len(result[key]['objects'])
+                    if count > 0:
+                        color_name = {'low': '绿色', 'high': '红色', 'cage': '蓝色'}[key]
+                        details.append(f"{count}个_{key}({color_name})")
+                
+                detail_text = ", ".join(details)
+                transparency_text = f", 透明度{int(transparency*100)}%" if transparency > 0 else ""
+                
+                self.update_status(f"自动分材质完成: {detail_text}{transparency_text}")
+                
+                # 刷新界面
+                self.refresh_selection()
+            else:
+                self.update_status("未找到带有_low、_high或_cage后缀的物体")
+                
+        except Exception as e:
+            self.update_status(f"自动分材质失败: {str(e)}")
+    
     def show_about(self):
         """
         显示关于对话框
@@ -472,6 +554,11 @@ class MayaBakingRenamerGUI(QDialog):
         • 支持自动重命名模式
         • 自定义后缀支持
         • 批量重命名功能
+        • 自动分材质功能 (NEW!)
+          - _low模型: 绿色Lambert材质
+          - _high模型: 红色Lambert材质
+          - _cage模型: 蓝色Lambert材质
+          - 支持透明度设置
         • 撤销/重做操作
         • 命名冲突检测
         

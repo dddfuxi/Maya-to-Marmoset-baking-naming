@@ -1,4 +1,4 @@
-# Maya烘焙命名工具
+# 伏羲 Maya烘焙命名工具
 
 一个专为Maya到Marmoset Toolbag烘焙工作流设计的快速重命名工具，支持Maya 2023及以前版本。
 
