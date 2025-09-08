@@ -1,3 +1,0 @@
-每次修改需要自动git提交记录
-不要把rules提交到git仓库
-将脚本复制并覆盖到maya的scripts文件夹下
